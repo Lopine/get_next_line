@@ -16,7 +16,7 @@ int main(void)
     fd = open("test.txt", O_RDONLY);
     if (fd == -1)
     {
-        printf("Error opening file");
+        //printf("Error opening file");
         return(1);
     }
     while (1)
@@ -25,7 +25,7 @@ int main(void)
         if (line == NULL)
             break;
         ++count;
-        printf("[%d]:%s\n", count, line);
+        //printf("[%d]:%s\n", count, line);
         free(line);
         line == NULL;
     }

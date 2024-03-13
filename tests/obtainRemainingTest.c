@@ -8,5 +8,5 @@ int main()
 {
     char *buffer = "12345\nabcd";
 
-    printf("%s\n", obtain_remaining(buffer));
+    //printf("%s\n", obtain_remaining(buffer));
 } 

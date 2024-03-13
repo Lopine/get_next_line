@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plachard <plachard@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 12:38:52 by plachard          #+#    #+#             */
-/*   Updated: 2024/03/07 15:31:30 by plachard         ###   ########.fr       */
+/*   Updated: 2024/03/08 13:12:31 by plachard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,17 @@ char	*read_line(char *static_buf, int fd)
 /*      get the next line from the file descriptor    */
 char	*get_next_line(int fd)
 {
-	static char	*static_buf;
+	static char	*static_buf[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX || fd > OPEN_MAX)
 		return (0);
-	static_buf = read_line(static_buf, fd);
-	if (!static_buf)
+	static_buf[fd] = read_line(static_buf[fd], fd);
+	if (!static_buf[fd])
 		return (NULL);
-	line = get_the_line(static_buf);
+	line = get_the_line(static_buf[fd]);
 	if (!line)
-		return (free_static(&static_buf), line);
-	static_buf = next_line(static_buf);
+		return (free_static(&static_buf[fd]), line);
+	static_buf[fd] = next_line(static_buf[fd]);
 	return (line);
 }

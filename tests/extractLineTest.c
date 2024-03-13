@@ -7,5 +7,5 @@ int main()
 {
     char *buffer = "12345\nabcd";
 
-    printf("%s\n", extract_line(buffer));
+    //printf("%s\n", extract_line(buffer));
 } 

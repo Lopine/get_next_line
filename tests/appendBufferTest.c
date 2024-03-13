@@ -15,5 +15,5 @@ int main()
     strcpy(buffer, _buffer);
     buffer[5] = 0;
 
-    printf("%s\n", append_buffer(buffer, stash));
+    //printf("%s\n", append_buffer(buffer, stash));
 } 
